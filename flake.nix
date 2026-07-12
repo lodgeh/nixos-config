@@ -3,8 +3,8 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-26.05";
 
     agenix = {
-     url = "github:ryantm/agenix";
-     inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:ryantm/agenix";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     secrets = {
@@ -14,17 +14,24 @@
 
   };
 
-  outputs = { self, nixpkgs, agenix, secrets } @ inputs: {
+  outputs =
+    {
+      self,
+      nixpkgs,
+      agenix,
+      secrets,
+    }@inputs:
+    {
 
-    nixosConfigurations = {
-      nixos-homelab = nixpkgs.lib.nixosSystem {
-        specialArgs = { inherit inputs; };
-        modules = [ 
-	  ./homelab/configuration.nix 
-	  agenix.nixosModules.default
-	  ];
+      nixosConfigurations = {
+        nixos-homelab = nixpkgs.lib.nixosSystem {
+          specialArgs = { inherit inputs; };
+          modules = [
+            ./homelab/configuration.nix
+            agenix.nixosModules.default
+          ];
+        };
       };
     };
-  };
 
 }

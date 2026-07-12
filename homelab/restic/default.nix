@@ -1,10 +1,10 @@
 { config, pkgs, ... }: {
-  
+
   environment.systemPackages = with pkgs; [
     restic
   ];
 
- services.restic.backups.homelab = {
+  services.restic.backups.homelab = {
     initialize = true;
     environmentFile = config.age.secrets."restic/env".path;
     repositoryFile = config.age.secrets."restic/repo".path;

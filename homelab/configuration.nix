@@ -1,13 +1,13 @@
 { config, pkgs, ... }:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-      ./restic
-      ./secrets
-    ];
-  hardware.enableRedistributableFirmware = true;  
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+    ./restic
+    ./secrets
+  ];
+  hardware.enableRedistributableFirmware = true;
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -21,7 +21,7 @@
 
   networking.hostName = "nixos-homelab";
   networking.hostId = "be4775d2";
-  networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+  networking.wireless.enable = true; # Enables wireless support via wpa_supplicant.
 
   # Enable networking
   networking.networkmanager.enable = true;
@@ -57,8 +57,11 @@
   users.users."hi" = {
     isNormalUser = true;
     description = "hi";
-    extraGroups = [ "networkmanager" "wheel" ];
-    packages = with pkgs; [];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+    ];
+    packages = with pkgs; [ ];
   };
 
   # Allow unfree packages
