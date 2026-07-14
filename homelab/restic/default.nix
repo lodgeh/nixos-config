@@ -25,5 +25,9 @@
       OnCalendar = "daily";
       Persistent = true;
     };
+
+    backupCleanupCommand = ''
+      /run/current-system/sw/bin/shutdown -h now
+    '';
   };
 }
