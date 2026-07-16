@@ -1,5 +1,5 @@
 {
- services.immich = {
+  services.immich = {
     enable = true;
     mediaLocation = "/var/lib/immich";
     port = 2283;
