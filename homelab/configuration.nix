@@ -4,7 +4,7 @@
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
-    ./restic
+    ./services
     ./secrets
   ];
   hardware.enableRedistributableFirmware = true;
@@ -101,13 +101,4 @@
     "nix-command"
     "flakes"
   ];
-
-  services.immich = {
-    enable = true;
-    mediaLocation = "/var/lib/immich";
-    port = 2283;
-    host = "0.0.0.0";
-    openFirewall = true;
-    machine-learning.enable = true;
-  };
 }
