@@ -77,7 +77,10 @@
     nixfmt
     neovim
     zfs
+    powertop
   ];
+
+  powerManagement.powertop.enable = true;
 
   # Enable the OpenSSH daemon.
   services.openssh = {
