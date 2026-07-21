@@ -28,9 +28,9 @@
           specialArgs = { inherit inputs; };
           modules = [
             ./homelab/configuration.nix
-	    agenix.nixosModules.default
+            agenix.nixosModules.default
             {
-	      environment.systemPackages = [ agenix.packages.x86_64-linux.default ];
+              environment.systemPackages = [ agenix.packages.x86_64-linux.default ];
             }
           ];
         };

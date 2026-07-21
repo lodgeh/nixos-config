@@ -9,12 +9,12 @@
   };
   services.caddy = {
     virtualHosts."photos.homelab2.com".extraConfig = ''
-      reverse_proxy 127.0.0.1:2283
+            reverse_proxy 127.0.0.1:2283
 
-      tls {
-        dns cloudflare {env.CLOUDFLARE_API_TOKEN}
-	resolvers 1.1.1.1 1.0.0.1
-      }
+            tls {
+              dns cloudflare {env.CLOUDFLARE_API_TOKEN}
+      	resolvers 1.1.1.1 1.0.0.1
+            }
     '';
   };
 

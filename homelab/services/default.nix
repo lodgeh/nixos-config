@@ -8,19 +8,24 @@
     ./opencloud
   ];
 
-  networking.firewall.allowedTCPPorts = [ 80 443 ];
+  networking.firewall.allowedTCPPorts = [
+    80
+    443
+  ];
 
   services.dnsmasq = {
     enable = true;
     alwaysKeepRunning = true;
-    servers = [ "1.1.1.1" "8.8.8.8" ];
+    servers = [
+      "1.1.1.1"
+      "8.8.8.8"
+    ];
     settings = {
       address = [
         "/photos.homelab2.com/192.168.1.190"
       ];
     };
-};
-
+  };
 
   services.caddy = {
     enable = true;
@@ -30,6 +35,5 @@
       hash = "sha256-hEHgAG0F0ozHRAPuxEqLyTATBrE+pajeXDiSNwniorg=";
     };
   };
-
 
 }
