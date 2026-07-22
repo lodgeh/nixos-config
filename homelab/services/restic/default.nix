@@ -12,6 +12,7 @@
 
     paths = [
       "/var/lib/immich"
+      "/var/lib/vaultwarden"
     ];
 
     pruneOpts = [
