@@ -1,6 +1,8 @@
+{ inputs, ... }:
 {
   services.immich = {
     enable = true;
+    package = inputs.nixpkgs-unstable.legacyPackages.x86_64-linux.immich;
     mediaLocation = "/var/lib/immich";
     port = 2283;
     host = "0.0.0.0";
