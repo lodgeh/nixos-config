@@ -109,11 +109,11 @@
     "secrets": {
       "flake": false,
       "locked": {
-        "lastModified": 1784658682,
-        "narHash": "sha256-a0+pk7auNpxAfFdVzROmxhgWphzZQkQwHrBYV3Hrqs8=",
+        "lastModified": 1784830821,
+        "narHash": "sha256-+pYckHrUg/HGJQ2N4IpxPrEldBTv6rI90yn1uDYuv/A=",
         "ref": "refs/heads/master",
-        "rev": "21adef1e9c7ec12533b7971c93a9d7539fcb785a",
-        "revCount": 3,
+        "rev": "a6f6435a052b090872d28d933f54fe67b48020ac",
+        "revCount": 4,
         "type": "git",
         "url": "ssh://git@github.com/lodgeh/nixos-private.git"
       },

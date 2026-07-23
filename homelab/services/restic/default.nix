@@ -13,6 +13,7 @@
     paths = [
       "/var/lib/immich"
       "/var/lib/vaultwarden"
+      "/var/lib/opencloud"
     ];
 
     pruneOpts = [
