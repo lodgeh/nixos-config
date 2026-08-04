@@ -19,7 +19,7 @@
   # Use latest kernel.
   boot.kernelPackages = pkgs.linuxPackages;
 
-  networking.hostName = "nixos-homelab";
+  networking.hostName = "homelab";
   networking.hostId = "be4775d2";
   networking.wireless.enable = true; # Enables wireless support via wpa_supplicant.
 
@@ -54,9 +54,9 @@
   console.keyMap = "us";
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users."hi" = {
+  users.users."homelab" = {
     isNormalUser = true;
-    description = "hi";
+    description = "homelab";
     extraGroups = [
       "networkmanager"
       "wheel"
@@ -90,7 +90,7 @@
       PasswordAuthentication = true;
       KbdInteractiveAuthentication = false;
       PermitRootLogin = "yes";
-      AllowUsers = [ "hi" ];
+      AllowUsers = [ "homelab" ];
     };
   };
   # settings for stateful data, like file locations and database versions

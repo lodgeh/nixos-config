@@ -27,7 +27,7 @@
     {
 
       nixosConfigurations = {
-        nixos-homelab = nixpkgs.lib.nixosSystem {
+        homelab = nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs; };
           modules = [
             ./homelab/configuration.nix
