@@ -1,3 +1,4 @@
+{ variables, ... }:
 {
   services.collabora-online = {
     enable = true;
@@ -18,14 +19,14 @@
 
       storage.wopi = {
         "@allow" = true;
-        host = [ "cloud.homelab2.com" ];
+        host = [ "cloud.${variables.domain}" ];
       };
 
-      server_name = "office.homelab2.com";
+      server_name = "office.${variables.domain}";
     };
   };
   services.caddy = {
-    virtualHosts."office.homelab2.com".extraConfig = ''
+    virtualHosts."office.${variables.domain}".extraConfig = ''
             reverse_proxy [::1]:9980
 
             tls {

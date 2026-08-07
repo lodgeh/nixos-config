@@ -1,4 +1,4 @@
-{ inputs, ... }:
+{ inputs, variables, ... }:
 {
   services.immich = {
     enable = true;
@@ -10,7 +10,7 @@
     machine-learning.enable = true;
   };
   services.caddy = {
-    virtualHosts."photos.homelab2.com".extraConfig = ''
+    virtualHosts."photos.${variables.domain}".extraConfig = ''
             reverse_proxy 127.0.0.1:2283
 
             tls {

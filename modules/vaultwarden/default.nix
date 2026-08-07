@@ -1,3 +1,4 @@
+{ variables, ... }:
 {
   networking.firewall.allowedTCPPorts = [ 8222 ];
 
@@ -12,7 +13,7 @@
     };
   };
   services.caddy = {
-    virtualHosts."pass.homelab2.com".extraConfig = ''
+    virtualHosts."pass.${variables.domain}".extraConfig = ''
             encode zstd gzip
 
 	    reverse_proxy 127.0.0.1:8222

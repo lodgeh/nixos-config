@@ -1,9 +1,9 @@
-{ config, inputs, ... }:
+{ config, inputs, variables, ... }:
 {
   services.opencloud = {
     enable = true;
     package = inputs.nixpkgs-unstable.legacyPackages.x86_64-linux.opencloud;
-    url = "https://cloud.homelab2.com";
+    url = "https://cloud.${variables.domain}";
     address = "127.0.0.1";
     port = 9200;
     environment = {
@@ -16,7 +16,7 @@
       COLLABORATION_APP_PRODUCT = "Collabora";
       COLLABORATION_APP_ADDR = "http://[::1]:9980";
       COLLABORATION_APP_INSECURE = "true";
-      COLLABORATION_WOPI_SRC = "https://cloud.homelab2.com";
+      COLLABORATION_WOPI_SRC = "https://cloud.${variables.domain}";
       COLLABORATION_APP_PROOF_DISABLE = "true";
     };
     settings = {
@@ -47,7 +47,7 @@
             "'self'"
             "blob:"
             "https://embed.diagrams.net"
-            "https://office.homelab2.com"
+            "https://office.${variables.domain}"
             "https://docs.opencloud.eu"
           ];
           img-src = [
@@ -86,7 +86,7 @@
     };
   };
   services.caddy = {
-    virtualHosts."cloud.homelab2.com".extraConfig = ''
+    virtualHosts."cloud.${variables.domain}".extraConfig = ''
             reverse_proxy 127.0.0.1:9200
 
             tls {
