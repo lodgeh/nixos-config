@@ -14,14 +14,14 @@
   };
   services.caddy = {
     virtualHosts."pass.${variables.domain}".extraConfig = ''
-            encode zstd gzip
+                  encode zstd gzip
 
-	    reverse_proxy 127.0.0.1:8222
+      	    reverse_proxy 127.0.0.1:8222
 
-            tls {
-              dns cloudflare {env.CLOUDFLARE_API_TOKEN}
-      	resolvers 1.1.1.1 1.0.0.1
-            }
+                  tls {
+                    dns cloudflare {env.CLOUDFLARE_API_TOKEN}
+            	resolvers 1.1.1.1 1.0.0.1
+                  }
     '';
   };
 }

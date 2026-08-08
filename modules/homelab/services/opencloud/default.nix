@@ -1,4 +1,9 @@
-{ config, inputs, variables, ... }:
+{
+  config,
+  inputs,
+  variables,
+  ...
+}:
 {
   services.opencloud = {
     enable = true;

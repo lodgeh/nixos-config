@@ -6,11 +6,11 @@
 }:
 let
   service = "immich";
-  cfg = config.services.${service};
+  cfg = config.homelab.services.${service};
 in
 {
 
-  options.services.${service} = {
+  options.homelab.services.${service} = {
     enable = lib.mkEnableOption "Enable Immich";
     mediaLocation = lib.mkOption {
       type = lib.types.str;
@@ -19,7 +19,7 @@ in
     };
     url = lib.mkOption {
       type = lib.types.str;
-      description = "Domain name for Immch ";
+      description = "URL for Immch service. Will be prefixed with `photos.`";
     };
 
   };
