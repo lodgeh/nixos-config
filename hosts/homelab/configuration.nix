@@ -20,13 +20,25 @@
       url = "homelab2.com";
     };
 
+    collabora-online = {
+      enable = true;
+      url = "homelab2.com";
+    };
+
+    opencloud = {
+      enable = true;
+      environmentFilePath = config.age.secrets."opencloud/admin".path;
+      url = "homelab2.com";
+    };
+
     restic = {
       enable = true;
       environmentFilePath = config.age.secrets."restic/env".path;
       repositoryFilePath = config.age.secrets."restic/repo".path;
       passwordFilePath = config.age.secrets."restic/password".path;
       pathsToBackup = [
-        config.homelab.services.immich.mediaLocation
+        config.services.immich.mediaLocation
+        config.services.opencloud.stateDir
         config.homelab.services.vaultwarden.directory
       ];
       backupCleanupCommand = ''
