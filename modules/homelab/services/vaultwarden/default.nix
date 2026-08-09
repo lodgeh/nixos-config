@@ -33,6 +33,7 @@ in
         ROCKET_LOG = "warning";
       };
     };
+
     services.caddy = {
       virtualHosts."pass.${cfg.url}".extraConfig = ''
                     encode zstd gzip
