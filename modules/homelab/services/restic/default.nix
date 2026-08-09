@@ -97,7 +97,7 @@ in
         Persistent = true;
       };
 
-      backupCleanupCommand = lib.mkIf (cfg.backupCleanupCommand != null) cfg.backupCleanupCommand
+      backupCleanupCommand = lib.mkIf (cfg.backupCleanupCommand != null) cfg.backupCleanupCommand;
 
     };
   };

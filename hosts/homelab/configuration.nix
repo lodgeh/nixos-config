@@ -3,9 +3,19 @@
 {
   imports = [
     ./hardware-configuration.nix
-    ./services
     ./secrets
   ];
+
+  homelab.services = {
+    enable = true;
+    caddyEnvironmentFilePath = config.age.secrets."cloudflare/api".path;
+
+    immich = {
+      enable = true;
+      url = "homelab2.com";
+    };
+  };
+
   hardware.enableRedistributableFirmware = true;
 
   boot.loader.systemd-boot.enable = true;
