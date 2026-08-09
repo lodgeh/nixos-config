@@ -18,7 +18,7 @@ in
     };
     url = lib.mkOption {
       type = lib.types.str;
-      description = "URL for Immch service. Will be prefixed with `photos.`";
+      description = "URL for Immch service. Will use the`photos.` subdomain";
     };
 
   };
