@@ -5,16 +5,15 @@
   ...
 }:
 let
-  service = "immich";
-  cfg = config.homelab.services.${service};
+  cfg = config.homelab.services.immich;
 in
 {
 
-  options.homelab.services.${service} = {
+  options.homelab.services.immich = {
     enable = lib.mkEnableOption "Enable Immich";
     mediaLocation = lib.mkOption {
       type = lib.types.str;
-      default = "/var/lib/${service}";
+      default = "/var/lib/immich";
       description = "Directory used to store media files";
     };
     url = lib.mkOption {
