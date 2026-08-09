@@ -14,7 +14,7 @@ in
     enable = lib.mkEnableOption "Enable Immich";
     mediaLocation = lib.mkOption {
       type = lib.types.str;
-      default = "var/lib/${service}";
+      default = "/var/lib/${service}";
       description = "Directory used to store media files";
     };
     url = lib.mkOption {

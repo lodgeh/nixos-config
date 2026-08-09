@@ -24,16 +24,15 @@ in
 
     };
   };
+  imports = [
+    ./immich
+    ./restic
+    ./vaultwarden
+    ./opencloud
+    ./collabora-online
+  ];
 
   config = lib.mkIf cfg.enable {
-    imports = [
-      ./immich
-      ./restic
-      ./vaultwarden
-      ./opencloud
-      ./collabora-online
-    ];
-
     networking.firewall.allowedTCPPorts = [
       80
       443
