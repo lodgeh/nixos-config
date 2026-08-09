@@ -4,7 +4,7 @@
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
-    ./restic
+    ./services
     ./secrets
   ];
   hardware.enableRedistributableFirmware = true;
@@ -19,7 +19,7 @@
   # Use latest kernel.
   boot.kernelPackages = pkgs.linuxPackages;
 
-  networking.hostName = "nixos-homelab";
+  networking.hostName = "homelab";
   networking.hostId = "be4775d2";
   networking.wireless.enable = true; # Enables wireless support via wpa_supplicant.
 
@@ -54,9 +54,9 @@
   console.keyMap = "us";
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users."hi" = {
+  users.users."homelab" = {
     isNormalUser = true;
-    description = "hi";
+    description = "homelab";
     extraGroups = [
       "networkmanager"
       "wheel"
@@ -77,7 +77,10 @@
     nixfmt
     neovim
     zfs
+    powertop
   ];
+
+  powerManagement.powertop.enable = true;
 
   # Enable the OpenSSH daemon.
   services.openssh = {
@@ -87,7 +90,7 @@
       PasswordAuthentication = true;
       KbdInteractiveAuthentication = false;
       PermitRootLogin = "yes";
-      AllowUsers = [ "hi" ];
+      AllowUsers = [ "homelab" ];
     };
   };
   # settings for stateful data, like file locations and database versions
@@ -101,13 +104,4 @@
     "nix-command"
     "flakes"
   ];
-
-  services.immich = {
-    enable = true;
-    mediaLocation = "/var/lib/immich";
-    port = 2283;
-    host = "0.0.0.0";
-    openFirewall = true;
-    machine-learning.enable = true;
-  };
 }

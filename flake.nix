@@ -2,6 +2,8 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-26.05";
 
+    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
+
     agenix = {
       url = "github:ryantm/agenix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -18,17 +20,21 @@
     {
       self,
       nixpkgs,
+      nixpkgs-unstable,
       agenix,
       secrets,
     }@inputs:
     {
 
       nixosConfigurations = {
-        nixos-homelab = nixpkgs.lib.nixosSystem {
+        homelab = nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs; };
           modules = [
             ./homelab/configuration.nix
             agenix.nixosModules.default
+            {
+              environment.systemPackages = [ agenix.packages.x86_64-linux.default ];
+            }
           ];
         };
       };

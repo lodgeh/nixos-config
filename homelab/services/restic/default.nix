@@ -12,6 +12,8 @@
 
     paths = [
       "/var/lib/immich"
+      "/var/lib/vaultwarden"
+      "/var/lib/opencloud"
     ];
 
     pruneOpts = [
@@ -25,5 +27,9 @@
       OnCalendar = "daily";
       Persistent = true;
     };
+
+    backupCleanupCommand = ''
+      /run/current-system/sw/bin/shutdown -h now
+    '';
   };
 }

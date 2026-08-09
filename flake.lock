@@ -82,21 +82,38 @@
         "type": "github"
       }
     },
+    "nixpkgs-unstable": {
+      "locked": {
+        "lastModified": 1784497964,
+        "narHash": "sha256-vlHUuqAcbcH2RKmHbPiuQzbv1pnzzavXnI62RD0bqCU=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "241313f4e8e508cb9b13278c2b0fa25b9ca27163",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "agenix": "agenix",
         "nixpkgs": "nixpkgs",
+        "nixpkgs-unstable": "nixpkgs-unstable",
         "secrets": "secrets"
       }
     },
     "secrets": {
       "flake": false,
       "locked": {
-        "lastModified": 1783869691,
-        "narHash": "sha256-UrNzA0Jjy0cDe8nw/aFt6GCFE6NTHkJEn9qnszVEYVg=",
+        "lastModified": 1784830821,
+        "narHash": "sha256-+pYckHrUg/HGJQ2N4IpxPrEldBTv6rI90yn1uDYuv/A=",
         "ref": "refs/heads/master",
-        "rev": "15b1d1937db676ce5737d73e2aa529af7e73531b",
-        "revCount": 1,
+        "rev": "a6f6435a052b090872d28d933f54fe67b48020ac",
+        "revCount": 4,
         "type": "git",
         "url": "ssh://git@github.com/lodgeh/nixos-private.git"
       },
