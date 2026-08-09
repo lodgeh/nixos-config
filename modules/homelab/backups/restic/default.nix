@@ -5,10 +5,10 @@
   ...
 }:
 let
-  cfg = config.homelab.services.restic;
+  cfg = config.homelab.backups.restic;
 in
 {
-  options.homelab.services.restic = {
+  options.homelab.backups.restic = {
     enable = lib.mkEnableOption "Enable restic backups to ";
     environmentFilePath = lib.mkOption {
       type = lib.types.path;

@@ -1,5 +1,4 @@
 { config, pkgs, ... }:
-
 {
   imports = [
     ./hardware-configuration.nix
@@ -30,7 +29,9 @@
       environmentFilePath = config.age.secrets."opencloud/admin".path;
       url = "homelab2.com";
     };
+  };
 
+  homelab.backups = {
     restic = {
       enable = true;
       environmentFilePath = config.age.secrets."restic/env".path;

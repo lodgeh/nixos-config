@@ -26,7 +26,6 @@ in
   };
   imports = [
     ./immich
-    ./restic
     ./vaultwarden
     ./opencloud
     ./collabora-online
