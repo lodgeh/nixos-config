@@ -1,4 +1,7 @@
 { config, pkgs, ... }:
+let
+  homelabDomain = "homelab2.com";
+in
 {
   imports = [
     ./hardware-configuration.nix
@@ -11,23 +14,23 @@
 
     immich = {
       enable = true;
-      url = "homelab2.com";
+      url = homelabDomain;
     };
 
     vaultwarden = {
       enable = true;
-      url = "homelab2.com";
+      url = homelabDomain;
     };
 
     collabora-online = {
       enable = true;
-      url = "homelab2.com";
+      url = homelabDomain;
     };
 
     opencloud = {
       enable = true;
       environmentFilePath = config.age.secrets."opencloud/admin".path;
-      url = "homelab2.com";
+      url = homelabDomain;
     };
   };
 

@@ -24,16 +24,11 @@
       agenix,
       secrets,
     }@inputs:
-    let
-      variables = {
-        domain = "homelab2.com";
-      };
-    in
     {
 
       nixosConfigurations = {
         homelab = nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit inputs variables; };
+          specialArgs = { inherit inputs; };
           modules = [
             ./modules
             ./hosts/homelab/configuration.nix
