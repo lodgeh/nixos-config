@@ -30,7 +30,8 @@
         homelab = nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs; };
           modules = [
-            ./homelab/configuration.nix
+            ./modules
+            ./hosts/homelab/configuration.nix
             agenix.nixosModules.default
             {
               environment.systemPackages = [ agenix.packages.x86_64-linux.default ];
