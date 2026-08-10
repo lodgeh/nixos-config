@@ -34,58 +34,41 @@ in
     };
   };
 
-  homelab.backups = {
-    restic = {
-      enable = true;
-      environmentFilePath = config.age.secrets."restic/env".path;
-      repositoryFilePath = config.age.secrets."restic/repo".path;
-      passwordFilePath = config.age.secrets."restic/password".path;
-      pathsToBackup = [
-        config.services.immich.mediaLocation
-        config.services.opencloud.stateDir
-        config.homelab.services.vaultwarden.directory
-      ];
-      backupCleanupCommand = ''
-        /run/current-system/sw/bin/shutdown -h now
-      '';
-    };
+  homelab.backups.restic = {
+    enable = true;
+    environmentFilePath = config.age.secrets."restic/env".path;
+    repositoryFilePath = config.age.secrets."restic/repo".path;
+    passwordFilePath = config.age.secrets."restic/password".path;
+    pathsToBackup = [
+      config.services.immich.mediaLocation
+      config.services.opencloud.stateDir
+      config.homelab.services.vaultwarden.directory
+    ];
+    backupCleanupCommand = ''
+      /run/current-system/sw/bin/shutdown -h now
+    '';
   };
 
-  hardware.enableRedistributableFirmware = true;
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
 
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-  boot.supportedFilesystems = [ "zfs" ];
-  boot.zfs.forceImportRoot = false;
-  boot.zfs.extraPools = [ "tank" ];
-  boot.kernelPackages = pkgs.linuxPackages;
+  nixpkgs.config.allowUnfree = true;
 
-  networking.hostName = "homelab";
-  networking.hostId = "be4775d2";
-  networking.wireless.enable = true;
-  networking.networkmanager.enable = true;
+  system.stateVersion = "26.05";
 
-  time.timeZone = "Europe/London";
+  environment.systemPackages = with pkgs; [
+    git
+    neovim
+    nixfmt
+    powertop
+    smartmontools
+    wget
+    zfs
+  ];
 
-  i18n.defaultLocale = "en_GB.UTF-8";
-  i18n.extraLocaleSettings = {
-    LC_ADDRESS = "en_GB.UTF-8";
-    LC_IDENTIFICATION = "en_GB.UTF-8";
-    LC_MEASUREMENT = "en_GB.UTF-8";
-    LC_MONETARY = "en_GB.UTF-8";
-    LC_NAME = "en_GB.UTF-8";
-    LC_NUMERIC = "en_GB.UTF-8";
-    LC_PAPER = "en_GB.UTF-8";
-    LC_TELEPHONE = "en_GB.UTF-8";
-    LC_TIME = "en_GB.UTF-8";
-  };
-
-  services.xserver.xkb = {
-    layout = "gb";
-    variant = "";
-  };
-
-  console.keyMap = "us";
+  powerManagement.powertop.enable = true;
 
   users.users."homelab" = {
     isNormalUser = true;
@@ -94,22 +77,8 @@ in
       "networkmanager"
       "wheel"
     ];
-    packages = with pkgs; [ ];
+    packages = [ ];
   };
-
-  nixpkgs.config.allowUnfree = true;
-
-  environment.systemPackages = with pkgs; [
-    wget
-    smartmontools
-    git
-    nixfmt
-    neovim
-    zfs
-    powertop
-  ];
-
-  powerManagement.powertop.enable = true;
 
   services.openssh = {
     enable = true;
@@ -121,10 +90,46 @@ in
       AllowUsers = [ "homelab" ];
     };
   };
-  system.stateVersion = "26.05";
 
-  nix.settings.experimental-features = [
-    "nix-command"
-    "flakes"
-  ];
+  hardware.enableRedistributableFirmware = true;
+
+  boot = {
+    loader.systemd-boot.enable = true;
+    loader.efi.canTouchEfiVariables = true;
+    kernelPackages = pkgs.linuxPackages;
+    supportedFilesystems = [ "zfs" ];
+    zfs.forceImportRoot = false;
+    zfs.extraPools = [ "tank" ];
+  };
+
+  networking = {
+    hostName = "homelab";
+    hostId = "be4775d2";
+    wireless.enable = true;
+    networkmanager.enable = true;
+  };
+
+  time.timeZone = "Europe/London";
+
+  i18n = {
+    defaultLocale = "en_GB.UTF-8";
+    extraLocaleSettings = {
+      LC_ADDRESS = "en_GB.UTF-8";
+      LC_IDENTIFICATION = "en_GB.UTF-8";
+      LC_MEASUREMENT = "en_GB.UTF-8";
+      LC_MONETARY = "en_GB.UTF-8";
+      LC_NAME = "en_GB.UTF-8";
+      LC_NUMERIC = "en_GB.UTF-8";
+      LC_PAPER = "en_GB.UTF-8";
+      LC_TELEPHONE = "en_GB.UTF-8";
+      LC_TIME = "en_GB.UTF-8";
+    };
+  };
+
+  services.xserver.xkb = {
+    layout = "gb";
+    variant = "";
+  };
+  console.keyMap = "us";
+
 }
