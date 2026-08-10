@@ -22,11 +22,6 @@ in
       url = homelabDomain;
     };
 
-    collabora-online = {
-      enable = true;
-      url = homelabDomain;
-    };
-
     opencloud = {
       enable = true;
       environmentFilePath = config.age.secrets."opencloud/admin".path;

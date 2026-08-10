@@ -8,6 +8,7 @@ let
   cfg = config.homelab.services.opencloud;
 in
 {
+  imports = [ ../collabora-online ];
 
   options.homelab.services.opencloud = {
     enable = lib.mkEnableOption {
@@ -35,6 +36,11 @@ in
   };
 
   config = lib.mkIf cfg.enable {
+    homelab.services.collabora-online = {
+      enable = true;
+      url = cfg.url;
+    };
+
     services.opencloud = {
       enable = true;
       package = inputs.nixpkgs-unstable.legacyPackages.x86_64-linux.opencloud;
